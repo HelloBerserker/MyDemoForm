@@ -59,6 +59,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.txtInput = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.FontColorPicker = new System.Windows.Forms.Button();
+            this.rdbFontColor = new System.Windows.Forms.RadioButton();
+            this.rdbBackColor = new System.Windows.Forms.RadioButton();
+            this.button4 = new System.Windows.Forms.Button();
+            this.txtshow = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -157,6 +162,11 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.txtshow);
+            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Controls.Add(this.rdbBackColor);
+            this.tabPage1.Controls.Add(this.rdbFontColor);
+            this.tabPage1.Controls.Add(this.FontColorPicker);
             this.tabPage1.Controls.Add(this.btCopy);
             this.tabPage1.Controls.Add(this.picbox);
             this.tabPage1.Controls.Add(this.label6);
@@ -418,6 +428,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "确认";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtInput
             // 
@@ -437,6 +448,59 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // FontColorPicker
+            // 
+            this.FontColorPicker.Location = new System.Drawing.Point(927, 158);
+            this.FontColorPicker.Name = "FontColorPicker";
+            this.FontColorPicker.Size = new System.Drawing.Size(51, 38);
+            this.FontColorPicker.TabIndex = 25;
+            this.FontColorPicker.Text = "A";
+            this.FontColorPicker.UseVisualStyleBackColor = true;
+            this.FontColorPicker.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // rdbFontColor
+            // 
+            this.rdbFontColor.AutoSize = true;
+            this.rdbFontColor.Location = new System.Drawing.Point(927, 92);
+            this.rdbFontColor.Name = "rdbFontColor";
+            this.rdbFontColor.Size = new System.Drawing.Size(90, 24);
+            this.rdbFontColor.TabIndex = 26;
+            this.rdbFontColor.Text = "字体颜色";
+            this.rdbFontColor.UseVisualStyleBackColor = true;
+            this.rdbFontColor.CheckedChanged += new System.EventHandler(this.rdbFontColor_CheckedChanged);
+            // 
+            // rdbBackColor
+            // 
+            this.rdbBackColor.AutoSize = true;
+            this.rdbBackColor.Checked = true;
+            this.rdbBackColor.Location = new System.Drawing.Point(927, 120);
+            this.rdbBackColor.Name = "rdbBackColor";
+            this.rdbBackColor.Size = new System.Drawing.Size(90, 24);
+            this.rdbBackColor.TabIndex = 27;
+            this.rdbBackColor.TabStop = true;
+            this.rdbBackColor.Text = "背景颜色";
+            this.rdbBackColor.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(506, 92);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(87, 35);
+            this.button4.TabIndex = 28;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // txtshow
+            // 
+            this.txtshow.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtshow.Location = new System.Drawing.Point(945, 299);
+            this.txtshow.Multiline = true;
+            this.txtshow.Name = "txtshow";
+            this.txtshow.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtshow.Size = new System.Drawing.Size(205, 107);
+            this.txtshow.TabIndex = 29;
             // 
             // Grid
             // 
@@ -500,5 +564,10 @@
         private System.Windows.Forms.TrackBar intR;
         private System.Windows.Forms.TrackBar intA;
         private System.Windows.Forms.Button btCopy;
+        private System.Windows.Forms.Button FontColorPicker;
+        private System.Windows.Forms.RadioButton rdbBackColor;
+        private System.Windows.Forms.RadioButton rdbFontColor;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox txtshow;
     }
 }

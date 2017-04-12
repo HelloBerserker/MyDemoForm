@@ -16,6 +16,7 @@ namespace MyDemoForm
         {
             InitializeComponent();
         }
+        public Color fontcolor = Color.Red;
        private void SetRichtxt(string message, Color fontcolor)
         {
             int firstlength = rtxt.TextLength;
@@ -42,16 +43,46 @@ namespace MyDemoForm
            cd.ShowDialog();
            lblcolor.BackColor = cd.Color;
        }
+        string ColorToHex(int value)
+        {
+
+            return null;
+
+        }
        private void ChangeColor()
        {
+            if (rdbFontColor.Checked)
+            {
+                Bitmap bp = new Bitmap(picbox.Width, picbox.Height);
+                Graphics graph= Graphics.FromImage(bp);
+                fontcolor= Color.FromArgb(intA.Value, intR.Value, intG.Value, intB.Value);
+                graph.DrawString("R:" + intR.Value, new Font(new FontFamily("Consolas"), 12), new SolidBrush(fontcolor), 10, 5);
+                graph.DrawString("G:" + intG.Value, new Font(new FontFamily("Consolas"), 12), new SolidBrush(fontcolor), 10, 23);
+                graph.DrawString("B:" + intB.Value, new Font(new FontFamily("Consolas"), 12), new SolidBrush(fontcolor), 10, 41);
+                graph.DrawString("A:" + intA.Value, new Font(new FontFamily("Consolas"), 12), new SolidBrush(fontcolor), 10, 60);
+                graph.DrawString("HEX:" + ColorTranslator.ToHtml(fontcolor), new Font(new FontFamily("Consolas"), 12), new SolidBrush(fontcolor), 10, 78);
+                picbox.Image = bp;
+                txtshow.ForeColor = fontcolor;
+                return;
+            }
+            txtshow.Clear();
            Bitmap bt = new Bitmap(picbox.Width, picbox.Height);
            Graphics g = Graphics.FromImage(bt);
-           g.FillRectangle(new SolidBrush(Color.FromArgb(intA.Value, intR.Value, intG.Value, intB.Value)), 0, 0, picbox.Width, picbox.Height);
-           g.DrawString("R:"+intR.Value,new Font(new FontFamily("Consolas"),12),new SolidBrush(Color.Red),10,5);
-           g.DrawString("G:" + intG.Value, new Font(new FontFamily("Consolas"), 12), new SolidBrush(Color.Red), 10, 23);
-           g.DrawString("B:" + intB.Value, new Font(new FontFamily("Consolas"), 12), new SolidBrush(Color.Red), 10, 41);
-           g.DrawString("A:" + intA.Value, new Font(new FontFamily("Consolas"), 12), new SolidBrush(Color.Red), 10, 60);
-           picbox.Image = bt;
+            Color PickColor = Color.FromArgb(intA.Value, intR.Value, intG.Value, intB.Value);
+            picbox.BackColor = PickColor;
+           g.FillRectangle(new SolidBrush(PickColor), 0, 0, picbox.Width, picbox.Height);
+           g.DrawString("R:"+intR.Value,new Font(new FontFamily("Consolas"),12),new SolidBrush(fontcolor),10,5);
+           g.DrawString("G:" + intG.Value, new Font(new FontFamily("Consolas"), 12), new SolidBrush(fontcolor), 10, 23);
+            g.DrawString("B:" + intB.Value, new Font(new FontFamily("Consolas"), 12), new SolidBrush(fontcolor), 10, 41);
+            g.DrawString("A:" + intA.Value, new Font(new FontFamily("Consolas"), 12), new SolidBrush(fontcolor), 10, 60);            
+            g.DrawString("HEX:" + ColorTranslator.ToHtml(PickColor), new Font(new FontFamily("Consolas"), 12), new SolidBrush(fontcolor), 10, 78);
+            txtshow.AppendText("R:" + intR.Value+ Environment.NewLine);
+            txtshow.AppendText("G:" + intG.Value+Environment.NewLine);
+            txtshow.AppendText("B:" + intB.Value+ Environment.NewLine);
+            txtshow.AppendText("A:" + intA.Value + Environment.NewLine);
+            txtshow.AppendText("HEX:" + ColorTranslator.ToHtml(PickColor));
+            txtshow.BackColor = ColorTranslator.FromHtml(ColorTranslator.ToHtml(PickColor));
+            picbox.Image = bt;
        }
 
        private void intR_Scroll(object sender, EventArgs e)
@@ -83,6 +114,49 @@ namespace MyDemoForm
        {
            intA.Value = 125;
        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.ShowDialog();
+            fontcolor = cd.Color;
+            ChangeColor();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            string binary = "";
+            int value=0;
+            try
+            {
+                value = Convert.ToInt32(txtInput.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                for (int x = 0; x > -1; x++)
+                {
+                    if (value == 0)
+                        break;
+                    binary =value% 2+binary;
+                    value = value / 2;
+                }
+                MessageBox.Show(binary);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {            
+            MessageBox.Show((5/2).ToString());
+        }
+
+        private void rdbFontColor_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
